@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Histories\Schemas;
 
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;
 
@@ -14,7 +15,11 @@ class HistoryForm
                 Textarea::make('content')
                     ->required()
                     ->columnSpanFull(),
-                Textarea::make('image')
+                FileUpload::make('image')
+                    ->label('Foto Sejarah')
+                    ->image()
+                    ->directory('histories')
+                    ->visibility('public')
                     ->required()
                     ->columnSpanFull(),
             ]);

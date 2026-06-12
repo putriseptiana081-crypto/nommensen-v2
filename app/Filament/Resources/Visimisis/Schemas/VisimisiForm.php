@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Visimisis\Schemas;
 
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;
 
@@ -17,7 +18,14 @@ class VisimisiForm
                 Textarea::make('misi')
                     ->required()
                     ->columnSpanFull(),
-                Textarea::make('image')
+                FileUpload::make('image')
+                    ->label('Foto Visi Misi')
+                    ->image()
+                    ->multiple()
+                    ->reorderable()
+                    ->maxFiles(5)
+                    ->directory('visimisis')
+                    ->visibility('public')
                     ->required()
                     ->columnSpanFull(),
             ]);

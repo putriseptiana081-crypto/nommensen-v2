@@ -10,4 +10,8 @@ class History extends Model
         'content',
         'image',
     ];
+
+    protected $casts = [
+        'image' => 'array',
+    ];
 }

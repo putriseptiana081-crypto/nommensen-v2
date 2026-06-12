@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Students\Schemas;
 
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;
@@ -13,24 +14,48 @@ class StudentForm
         return $schema
             ->components([
                 TextInput::make('namalengkap')
-                    ->required(),
+                    ->label('Nama Lengkap')
+                    ->required()
+                    ->maxLength(255)
+                    ->placeholder('Masukkan nama lengkap mahasiswa'),
                 TextInput::make('namapanggilan')
-                    ->required(),
+                    ->label('Nama Panggilan')
+                    ->required()
+                    ->maxLength(255)
+                    ->placeholder('Masukkan nama panggilan'),
                 TextInput::make('email')
-                    ->label('Email address')
+                    ->label('Email')
                     ->email()
-                    ->required(),
+                    ->required()
+                    ->maxLength(255)
+                    ->placeholder('Masukkan email mahasiswa'),
                 TextInput::make('nomor_hp')
-                    ->required(),
+                    ->label('Nomor HP')
+                    ->required()
+                    ->maxLength(20)
+                    ->placeholder('Masukkan nomor HP'),
                 TextInput::make('jalur')
-                    ->required(),
-                Textarea::make('image')
+                    ->label('Jalur Masuk')
+                    ->required()
+                    ->maxLength(255)
+                    ->placeholder('Masukkan jalur masuk'),
+                FileUpload::make('image')
+                    ->label('Foto Mahasiswa')
+                    ->image()
+                    ->directory('students')
+                    ->visibility('public')
                     ->required()
                     ->columnSpanFull(),
                 TextInput::make('programstudi_1')
-                    ->required(),
+                    ->label('Program Studi 1')
+                    ->required()
+                    ->maxLength(255)
+                    ->placeholder('Masukkan program studi utama'),
                 TextInput::make('programstudi_2')
-                    ->required(),
+                    ->label('Program Studi 2')
+                    ->required()
+                    ->maxLength(255)
+                    ->placeholder('Masukkan program studi kedua'),
             ]);
     }
 }
